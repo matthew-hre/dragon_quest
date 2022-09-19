@@ -2,7 +2,6 @@ from helpers.bcolors import bcolors
 
 
 class Inventory:
-
     def __init__(self):
         self.inventory = {  # item : count
 
@@ -10,7 +9,7 @@ class Inventory:
         self.ui_length = 20
 
     def list_items(self):
-        if (len(self.inventory) == 0):
+        if len(self.inventory) == 0:
             print("you're not carrying anything.")
         else:
             print(f"{bcolors.OKGREEN}inventory:{bcolors.ENDC}")
@@ -28,3 +27,16 @@ class Inventory:
         else:
             self.inventory[new_item] = count
         print(f"added {count} {new_item} to your inventory.")
+
+    def remove_item(self, item, count):
+        if item in self.inventory:
+            if self.inventory[item] > count:
+                # just take some away
+                self.inventory[item] -= count
+                return True
+            if self.inventory[item] == count:
+                # remove the item
+                del self.inventory[item]
+                return True
+        else:
+            return False

@@ -2,7 +2,7 @@ import imp
 import time
 from helpers.bcolors import bcolors
 from helpers.print_helper import print_helper
-from locations.tavern_main import tavern_main_location
+from locations.tavern_main import TavernMainLocation
 from inventory import Inventory
 from player import Player
 
@@ -35,19 +35,19 @@ class Game:
             f"{bcolors.BOLD}Enter your hero's name: {bcolors.ENDC}")
         print_helper.add_space(50)
         self.player = Player(player_name)
-        self.current_location = tavern_main_location()
+        self.current_location = TavernMainLocation()
         self.inventory = Inventory()
         self.intro_speech()
         self.game_loop()
 
     def run_lore_result(self, lore_result):
-        if (len(lore_result) == 2):
+        if len(lore_result) == 2:
             # it's an item
             self.inventory.add_item(lore_result[0], lore_result[1])
 
     def move(self):
         adjacent = self.current_location.loc_adjacent
-        if (len(adjacent) == 0):
+        if len(adjacent) == 0:
             print("there is nowhere to move to.")
             return
         item_idx = 0
@@ -66,7 +66,9 @@ class Game:
         print(f"{bcolors.OKGREEN}{self.current_location.get_name()}.{bcolors.ENDC}\n")
 
     def game_loop(self):
-        print(f"{bcolors.OKCYAN}(m){bcolors.ENDC}: move\n{bcolors.OKCYAN}(i){bcolors.ENDC}: inventory\n{bcolors.OKCYAN}(c){bcolors.ENDC}: check")
+        print(f"{bcolors.OKCYAN}(m){bcolors.ENDC}: move")
+        print(f"{bcolors.OKCYAN}(i){bcolors.ENDC}: inventory")
+        print(f"{bcolors.OKCYAN}(c){bcolors.ENDC}: check")
         player_selection = input(">> ")
         player_selection = player_selection.lower()
 

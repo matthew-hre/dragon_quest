@@ -3,7 +3,7 @@ from helpers.bcolors import bcolors
 from location import Location
 
 
-class cloaked_figure_location(Location):
+class CloakedFigureLocation(Location):
 
     def __init__(self, parent):
         loc_name = "A Cloaked Figure"

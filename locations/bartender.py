@@ -3,7 +3,7 @@ from helpers.bcolors import bcolors
 from location import Location
 
 
-class bartender_location(Location):
+class BartenderLocation(Location):
 
     def __init__(self, parent):
         loc_name = "The Bartender"
