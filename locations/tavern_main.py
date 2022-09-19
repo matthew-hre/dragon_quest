@@ -3,16 +3,19 @@ from helpers.print_helper import print_helper
 from helpers.bcolors import bcolors
 from location import Location
 from locations.bartender import bartender_location
+from locations.cloaked_figure import cloaked_figure_location
 
 
 class tavern_main_location(Location):
 
-    loc_name = "The Tavern Bar"
-    loc_enemy_types = []
-    loc_adjacent = [bartender_location()]
-
     def __init__(self):
-        super().__init__(self.loc_name, self.loc_enemy_types, self.loc_adjacent)
+        loc_name = "The Tavern Bar"
+        loc_enemy_types = []
+        loc_adjacent = []
+        super().__init__(None, loc_name, loc_enemy_types, loc_adjacent)
+
+        self.add_adjacent(bartender_location(self))
+        self.add_adjacent(cloaked_figure_location(self))
 
     def read_lore(self):
         print("You're in a worn down tavern, on the outskirts of town.")
