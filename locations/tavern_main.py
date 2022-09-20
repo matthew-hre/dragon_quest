@@ -22,7 +22,5 @@ class TavernMainLocation(Location):
         print(f"There's a {bcolors.OKBLUE}Bartender{bcolors.ENDC} polishing a glass, and a {bcolors.WARNING}Cloaked Figure{bcolors.ENDC} in the corner.")
 
     def add_adjacent_locations(self):
-        bartender = BartenderLocation()
-        self.add_adjacent(bartender)
-        cloaked = CloakedFigureLocation()
-        self.add_adjacent(cloaked)
+        self.add_adjacent_location(BartenderLocation)
+        self.add_adjacent_location(CloakedFigureLocation)

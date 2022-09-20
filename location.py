@@ -3,21 +3,29 @@ from helpers.bcolors import bcolors
 
 
 class Location:
-    def __init__(self, loc_name, loc_enemy_types=[], loc_adjacent=[], loc_options=[]):
+    def __init__(self, loc_name, loc_enemy_types=None, loc_adjacent=None, loc_options=None):
         self.loc_name = loc_name
-        self.loc_enemy_types = loc_enemy_types
+        if loc_enemy_types == None:
+            self.loc_enemy_types = []
+        else:
+            self.loc_enemy_types = loc_enemy_types
+        if loc_adjacent == None:
+            self.loc_adjacent = []
+        else:
+            self.loc_adjacent = loc_adjacent
 
-        self.loc_adjacent = loc_adjacent
         default_options = ["move", "inventory", "check"]
-        self.loc_options = default_options + loc_options
+        if loc_options == None:
+            self.loc_options = default_options
+        else:
+            self.loc_options = default_options + loc_options
 
     def get_name(self):
         return self.loc_name
 
-    def add_adjacent(self, location):
-        self.loc_adjacent.append(location)
-        if not self in location.loc_adjacent:
-            location.add_adjacent(self)
+    def add_adjacent_location(self, location):
+        loc = location()
+        self.loc_adjacent.append(loc)
 
     def get_enemy_types(self):
         return self.loc_enemy_types

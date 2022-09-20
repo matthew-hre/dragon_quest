@@ -47,14 +47,13 @@ class Game:
             self.inventory.add_item(lore_result[0], lore_result[1])
 
     def move(self):
-        adjacent = self.current_location.loc_adjacent
-        if len(adjacent) == 0:
+        if len(self.current_location.loc_adjacent) == 0:
             print("there is nowhere to move to.")
             return
         item_idx = 0
         loc_dic = {}
         print("where would you like to move to?")
-        for loc in adjacent:
+        for loc in self.current_location.loc_adjacent:
             item_idx += 1
             loc_dic[item_idx] = loc
             print(f"{bcolors.OKCYAN}({item_idx}){bcolors.ENDC}: {loc.get_name()}")

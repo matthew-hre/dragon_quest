@@ -8,7 +8,6 @@ class BartenderLocation(Location):
     def __init__(self):
         loc_name = "The Bartender"
         super().__init__(loc_name)
-        print(self.loc_adjacent)
 
     def read_lore(self):
         print(
