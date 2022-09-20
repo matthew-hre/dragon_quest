@@ -26,6 +26,7 @@ class Location:
     def add_adjacent_location(self, location):
         loc = location()
         self.loc_adjacent.append(loc)
+        loc.loc_adjacent.append(self)
 
     def get_enemy_types(self):
         return self.loc_enemy_types
