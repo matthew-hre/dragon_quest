@@ -5,11 +5,10 @@ from location import Location
 
 class BartenderLocation(Location):
 
-    def __init__(self, parent):
+    def __init__(self):
         loc_name = "The Bartender"
-        loc_enemy_types = []
-        loc_adjacent = []
-        super().__init__(parent, loc_name, loc_enemy_types, loc_adjacent)
+        super().__init__(loc_name)
+        print(self.loc_adjacent)
 
     def read_lore(self):
         print(

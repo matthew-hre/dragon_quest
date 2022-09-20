@@ -5,11 +5,10 @@ from location import Location
 
 class CloakedFigureLocation(Location):
 
-    def __init__(self, parent):
+    def __init__(self):
         loc_name = "A Cloaked Figure"
-        loc_enemy_types = []
-        loc_adjacent = []
-        super().__init__(parent, loc_name, loc_enemy_types, loc_adjacent)
+        loc_options = ["give"]
+        super().__init__(loc_name, loc_options=loc_options)
 
     def read_lore(self):
         print(

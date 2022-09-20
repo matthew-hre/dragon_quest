@@ -37,7 +37,8 @@ class Game:
         self.player = Player(player_name)
         self.current_location = TavernMainLocation()
         self.inventory = Inventory()
-        self.intro_speech()
+        if player_name != "test":
+            self.intro_speech()
         self.game_loop()
 
     def run_lore_result(self, lore_result):
@@ -66,19 +67,20 @@ class Game:
         print(f"{bcolors.OKGREEN}{self.current_location.get_name()}.{bcolors.ENDC}\n")
 
     def game_loop(self):
-        print(f"{bcolors.OKCYAN}(m){bcolors.ENDC}: move")
-        print(f"{bcolors.OKCYAN}(i){bcolors.ENDC}: inventory")
-        print(f"{bcolors.OKCYAN}(c){bcolors.ENDC}: check")
+        for option in self.current_location.loc_options:
+            first_letter = option[0]
+            print(f"{bcolors.OKCYAN}({first_letter}){bcolors.ENDC}: {option}")
         player_selection = input(">> ")
         player_selection = player_selection.lower()
 
-        if player_selection == "m":
+        if player_selection == ("m" or "move"):
             self.move()
-        if player_selection == "i":
+        if player_selection == ("i" or "inventory"):
             self.inventory.list_items()
-        if player_selection == "c":
+        if player_selection == ("c" or "check"):
             lore_result = self.current_location.read_lore()
             if lore_result != None:
                 self.run_lore_result(lore_result)
-
+        if player_selection == ("g" or "give"):
+            print("fix this!")
         self.game_loop()  # yeah yeah recursion i know
